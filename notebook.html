@@ -17879,7 +17879,7 @@ Best accuracy: 0.6874
 <div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-python"><pre><span></span><span class="c1"># final accuracy test</span>
+<div class="highlight hl-python"><pre><span></span><span class="c1"># final accuracy test for submitted model</span>
 <span class="n">model_paths</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">'model_efficientnetb0_v2_tuned_2.pth'</span><span class="p">,</span>  <span class="c1"># 0.666577160358429 (crop + rotate + flip/CRP)</span>
     <span class="s1">'model_efficientnetb0_v5_tuned.pth'</span> <span class="c1"># 0.6468508839607239 (MixUp CutMix)</span>
@@ -17907,6 +17907,54 @@ Best accuracy: 0.6874
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
 <pre>{'val_loss': 0.98398756980896, 'val_acc': 0.6873780997492338}</pre>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-python"><pre><span></span><span class="c1"># Final accuracy test for best accuracy ever achieved</span>
+<span class="n">model_paths</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s1">'model_efficientnetb0_tuned_4.pth'</span><span class="p">,</span>     <span class="c1"># 0.6225019693374634 (default)</span>
+    <span class="s1">'model_efficientnetb0_v2_tuned_2.pth'</span><span class="p">,</span>  <span class="c1"># 0.666577160358429 (crop + rotate + flip/CRP)</span>
+    <span class="s1">'model_efficientnetb0_v3_tuned.pth'</span><span class="p">,</span>     <span class="c1"># 0.6451432704925537 (CRP + brightness and constrast)</span>
+    <span class="s1">'model_efficientnetb0_v4_tuned.pth'</span><span class="p">,</span>  <span class="c1"># 0.6521574258804321 (CRP + cut out)</span>
+    <span class="s1">'model_efficientnetb0_v5_tuned.pth'</span> <span class="c1"># 0.6468508839607239 (MixUp CutMix)</span>
+<span class="p">]</span>
+
+
+<span class="c1"># Load models</span>
+<span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">model_paths</span><span class="p">:</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">to_device</span><span class="p">(</span><span class="n">EfficientNetB0</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span> <span class="n">device</span><span class="p">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">load_state_dict</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">path</span><span class="p">))</span>
+    <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"WAP acc: </span><span class="se">\n</span><span class="s2">"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">evaluate_weighted_average_probs</span><span class="p">(</span><span class="n">models</span><span class="p">,</span> <span class="n">test_dl</span><span class="p">,</span> <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>WAP acc: 
+
+{'val_loss': 1.0393049359321593, 'val_acc': 0.6988018946781833}
+</pre>
 </div>
 </div>
 </div>
