@@ -15920,7 +15920,7 @@ EfficientNet-B0 Train Transform Efficiency: 28.718543817332296
     <span class="n">val_acc</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">'val_acc'</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">val_acc</span> <span class="o">&gt;</span> <span class="n">best_val_acc_eff_b0_v3</span><span class="p">:</span>
         <span class="n">best_val_acc_eff_b0_v3</span><span class="p">,</span> <span class="n">epochs_no_imp_eff_b0_v3</span> <span class="o">=</span> <span class="n">val_acc</span><span class="p">,</span> <span class="mi">0</span>
-        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_eff_b0_v3</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s1">'model_efficientnetb0_v.pth'</span><span class="p">)</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">model_eff_b0_v3</span><span class="o">.</span><span class="n">state_dict</span><span class="p">(),</span> <span class="s1">'model_efficientnetb0_v3.pth'</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"→ New best val_acc = </span><span class="si">{</span><span class="n">val_acc</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">  (ckpt saved)"</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">epochs_no_imp_eff_b0_v3</span> <span class="o">+=</span> <span class="mi">1</span>
