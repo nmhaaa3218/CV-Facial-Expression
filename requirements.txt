@@ -1,0 +1,41 @@
+# Facial Expression Recognition Project Requirements
+# Generated from actual project dependencies
+
+# Core Deep Learning Framework
+torch==2.5.1
+torchvision==0.20.1
+
+# Data Processing and Analysis
+numpy==1.26.4
+pandas==2.2.3
+matplotlib==3.9.2
+Pillow==11.0.0
+
+# Computer Vision and Image Processing
+opencv-python==4.11.0
+ultralytics==8.3.167
+
+# Web Application Framework
+streamlit==1.40.1
+
+# Progress Bars and Utilities
+tqdm==4.67.0
+
+# FLOPs Calculation
+fvcore==0.1.5.post20221221
+
+# Scientific Computing
+scipy==1.14.1
+
+# Machine Learning Utilities
+scikit-learn==1.5.2
+
+# Jupyter Notebook Support (for development)
+jupyter==1.1.1
+ipykernel==6.29.5
+matplotlib-inline==0.1.7
+
+# Google Colab Support (optional, for notebook execution)
+google-colab>=0.0.1
+
+
